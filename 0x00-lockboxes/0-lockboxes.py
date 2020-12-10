@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+'''DFS algo to check if all boxes can be opened'''
+
+
 def canUnlockAll(boxes):
     open = [False] * len(boxes)
     open[0] = True
