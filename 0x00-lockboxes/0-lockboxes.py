@@ -12,7 +12,7 @@ def canUnlockAll(boxes):
     while key_stack:
         node = key_stack.pop()
         for key in boxes[node]:
-            if not open[key]:
+            if not open[key] and key < len(boxes):
                 open[key] = True
                 key_stack.append(key)
     return all(open)
