@@ -3,6 +3,9 @@
 
 
 def canUnlockAll(boxes):
+    ''' Opens all boxes, returns T/F '''
+    if not boxes:
+        return False
     open = [False] * len(boxes)
     open[0] = True
     key_stack = [0]
