@@ -26,6 +26,7 @@ def primeFactors(n: int) -> List[int]:
         primes.append(int(n))
     return primes
 
+
 def minOperations(n: int) -> int:
     '''uses prime factorization to answer leetcode'''
     if (n < 1):
