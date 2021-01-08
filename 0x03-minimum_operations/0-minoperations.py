@@ -2,11 +2,10 @@
 '''Determines minimum number of operations necessary for leetcode problem'''
 
 
-from typing import List
 import math
 
 
-def primeFactors(n: int) -> List[int]:
+def primeFactors(n):
     '''Gets prime factors of integer'''
     primes = []
     m = 2
@@ -27,7 +26,7 @@ def primeFactors(n: int) -> List[int]:
     return primes
 
 
-def minOperations(n: int) -> int:
+def minOperations(n):
     '''uses prime factorization to answer leetcode'''
     if (n < 1):
         return 0
