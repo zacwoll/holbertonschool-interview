@@ -31,7 +31,8 @@ static void print_grid(int grid[3][3])
  * @j: second index
  * Return: Sum of unstable adjacent cells
  */
-int count_adj_unstables(int grid1[3][3], int i, int j) {
+int count_adj_unstables(int grid1[3][3], int i, int j)
+{
     int adj_sum = 0;
     if (i > 0 && grid1[i - 1][j] > 3)
         adj_sum++;
@@ -50,11 +51,12 @@ int count_adj_unstables(int grid1[3][3], int i, int j) {
  * @grid2: second grid
  * @grid3: third grid
  */
-void add_grids(int grid1[3][3], int grid2[3][3], int grid3[3][3]) {
+void add_grids(int grid1[3][3], int grid2[3][3], int grid3[3][3])
+{
     int i, j;
-    for (i = 0; i < 3; i++) 
+    for (i = 0; i < 3; i++)
     {
-        for (j = 0; j < 3; j++) 
+        for (j = 0; j < 3; j++)
         {
             grid1[i][j] = grid1[i][j] + grid2[i][j] + grid3[i][j];
         }
@@ -66,7 +68,8 @@ void add_grids(int grid1[3][3], int grid2[3][3], int grid3[3][3]) {
  * @grid1: the first sandpile 3x3 grid
  * @grid2: the second sandpile 3x3 gridd
  */
-void sandpiles_sum(int grid1[3][3], int grid2[3][3]) {
+void sandpiles_sum(int grid1[3][3], int grid2[3][3])
+{
     int i, j, adj_unstable_sum;
     int topple[3][3], adj_unstable_grid[3][3];
     bool isStable = true;
@@ -83,11 +86,11 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3]) {
     while (!isStable)
     {
         isStable = true;
-        for (i = 0; i < 3; i++) 
+        for (i = 0; i < 3; i++)
         {
-            for (j = 0; j < 3; j++) 
+            for (j = 0; j < 3; j++)
             {
-                if (grid1[i][j] > 3) 
+                if (grid1[i][j] > 3)
                 {
                     isStable = false;
                     topple[i][j] = -4;
