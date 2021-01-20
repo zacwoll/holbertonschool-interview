@@ -41,6 +41,8 @@ listint_t* helper(listint_t *current, listint_t *head, bool* isPal)
  * Return: 1 if palindromic else 0
  */
 int is_palindrome(listint_t **head) {
+    if (*head == NULL)
+        return (1);
     bool* isPal = malloc(sizeof(bool));
     *isPal = true;
     helper(*head, *head, isPal);
