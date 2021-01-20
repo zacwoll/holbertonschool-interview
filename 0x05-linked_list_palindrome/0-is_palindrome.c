@@ -14,7 +14,7 @@ listint_t* helper(listint_t *current, listint_t *head, bool* isPal)
 {
     if(current == NULL)
     {
-        return head;
+        return (head);
     }
     else
     {
@@ -24,15 +24,15 @@ listint_t* helper(listint_t *current, listint_t *head, bool* isPal)
             if(current->n != head->n)
             {
                 *isPal = false;
-                return head->next;
+                return (head->next);
             }
             else
             {
-                return head->next;
+                return (head->next);
             }
         }
     }
-    return head;
+    return (head);
 }
 
 /**
@@ -45,7 +45,7 @@ int is_palindrome(listint_t **head) {
     *isPal = true;
     helper(*head, *head, isPal);
     if (isPal)
-        return 1;
+        return (1);
     else
-        return 0;
+        return (0);
 }
