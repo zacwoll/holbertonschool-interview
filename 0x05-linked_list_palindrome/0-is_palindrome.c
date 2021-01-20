@@ -5,34 +5,18 @@
 
 /**
  * helper - recursive helper fnc for is_palindrome
- * @current - ptr sent to end of list to work backwards
- * @head - head of list
- * @isPal - boolean palindromic tracker
- * Return: ptr to next node to be checked
+ * @slow - double ptr to check front of list slowly
+ * @fast - ptr to end of list working backwards
+ * Return: 1 if passes palindromic checks else 0
  */
-listint_t* helper(listint_t *current, listint_t *head, bool* isPal)
+int helper(listint_t **slow, listint_t *fast)
 {
-    if(current == NULL)
-    {
-        return (head);
-    }
-    else
-    {
-        head = helper(current->next, head, isPal);
-        if(*isPal)
-        {
-            if(current->n != head->n)
-            {
-                *isPal = false;
-                return (head->next);
-            }
-            else
-            {
-                return (head->next);
-            }
-        }
-    }
-    return (head);
+	if (fast == NULL)
+		return (1);
+	if (!helper(slow, fast->next) || fast->n != (*slow)->n)
+		return (0);
+	*slow = (*slow)->next;
+	return (1);
 }
 
 /**
@@ -43,11 +27,5 @@ listint_t* helper(listint_t *current, listint_t *head, bool* isPal)
 int is_palindrome(listint_t **head) {
     if (*head == NULL)
         return (1);
-    bool* isPal = malloc(sizeof(bool));
-    *isPal = true;
-    helper(*head, *head, isPal);
-    if (isPal)
-        return (1);
-    else
-        return (0);
+    return (helper(head, *head));
 }
