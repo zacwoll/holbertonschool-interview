@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 /**
-  * find_listint_loop - Floyd's Tortoise and Hare, finds loop in list
-  * @head: head of the list
-  * Return: listint_t address of loop
+  * is_palindrome - determines if unsigned long is palindromic
+  * @n: number in question
+  * Return: 1 if true, 0 if false
   */
 int is_palindrome(unsigned long n)
 {
