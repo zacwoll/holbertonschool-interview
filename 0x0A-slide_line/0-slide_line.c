@@ -27,7 +27,9 @@ static void print_array(int const *array, size_t size)
 void rev_list(int *line, size_t size)
 {
 	int temp = 0;
-	for (int i = 0, j = size - 1; i < j; i++, j--) {
+
+	for (int i = 0, j = size - 1; i < j; i++, j--)
+	{
 		temp = line[i];
 		line[i] = line[j];
 		line[j] = temp;
@@ -55,13 +57,13 @@ int slide_line(int *line, size_t size, int direction)
 		val = line[i];
 		for (int j = i - 1; j >= start && j <= end; j -= 1)
 		{
-			if (line[j] == val && merged_last == false) 
+			if (line[j] == val && merged_last == false)
 			{
 				line[i] = 0;
 				line[j] += val;
 				val = line[j];
 				merged_last = true;
-			} else if (line[j] > 0) 
+			} else if (line[j] > 0)
 			{
 				line[i] = 0;
 				line[j + 1] = val;
@@ -72,8 +74,8 @@ int slide_line(int *line, size_t size, int direction)
 			{
 				line[j] = line[i];
 				line[i] = 0;
-			}
-			else {
+			} else
+			{
 				line[j] = 0;
 			}
 		}
@@ -83,19 +85,21 @@ int slide_line(int *line, size_t size, int direction)
 	return (1);
 }
 
-// slide_line_helper(line, size, direction) {
-// 	if (!line)
-// 		return 0;
-// 	if (direction == -1)
-// 	{
-// 		rev_list(line, size);
-// 		slide_line(line, size, 1);
-// 		rev_list(line, size);
-// 		return (1);
-// 	}
-// 	else
-// 		return slide_line(line, size, 1);
-// }
+/*
+slide_line_helper(line, size, direction) {
+	if (!line)
+		return 0;
+	if (direction == -1)
+	{
+		rev_list(line, size);
+		slide_line(line, size, 1);
+		rev_list(line, size);
+		return (1);
+	}
+	else
+		return slide_line(line, size, 1);
+}
 
-// if (line[i] == 0)
-// 	continue;
+if (line[i] == 0)
+	continue;
+*/
