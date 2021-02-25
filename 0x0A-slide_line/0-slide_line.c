@@ -84,22 +84,3 @@ int slide_line(int *line, size_t size, int direction)
 		rev_list(line, size);
 	return (1);
 }
-
-/*
-slide_line_helper(line, size, direction) {
-	if (!line)
-		return 0;
-	if (direction == -1)
-	{
-		rev_list(line, size);
-		slide_line(line, size, 1);
-		rev_list(line, size);
-		return (1);
-	}
-	else
-		return slide_line(line, size, 1);
-}
-
-if (line[i] == 0)
-	continue;
-*/
