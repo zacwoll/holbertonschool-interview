@@ -9,9 +9,9 @@
  */
 void rev_list(int *line, size_t size)
 {
-	int temp = 0;
+	int temp = 0, i, j;
 
-	for (int i = 0, j = size - 1; i < j; i++, j--)
+	for (i = 0, j = size - 1; i < j; i++, j--)
 	{
 		temp = line[i];
 		line[i] = line[j];
@@ -29,16 +29,16 @@ void rev_list(int *line, size_t size)
 int slide_line(int *line, size_t size, int direction)
 {
 	bool merged_last = false;
-	int start = 0, end = size - 1, val;
+	int start = 0, end = size - 1, val, i, j;
 
 	if (direction == -1)
 	{
 		rev_list(line, size);
 	}
-	for (int i = start; i <= end; i++)
+	for (i = start; i <= end; i++)
 	{
 		val = line[i];
-		for (int j = i - 1; j >= start && j <= end; j -= 1)
+		for (j = i - 1; j >= start && j <= end; j -= 1)
 		{
 			if (line[j] == val && merged_last == false)
 			{
