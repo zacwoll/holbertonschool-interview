@@ -13,7 +13,7 @@ char **createCarpet(int side_length)
 	int i, j;
 	char **carpet;
 
-	carpet = malloc( sizeof(char *) * side_length);
+	carpet = malloc(sizeof(char *) * side_length);
 	for (i = 0; i < side_length; i++)
 	{
 		carpet[i] = malloc(sizeof(char) * (side_length + 1));
@@ -42,7 +42,8 @@ void freeCarpet(char **carpet)
  * @old: old carpet of size 1 less than desired at this stage
  * Return: char ** to new carpet
  */
-char **createNewCarpet(char **old) {
+char **createNewCarpet(char **old)
+{
 	int i, j, k, l, old_length = strlen(old[0]);
 	char **new;
 
@@ -68,11 +69,12 @@ char **createNewCarpet(char **old) {
 	return (new);
 }
 
-/** 
+/**
  * printCarpet - prints a carpet
  * @carpet: carpet to be printed
  */
-void printCarpet(char **carpet) {
+void printCarpet(char **carpet)
+{
 	int height = strlen(carpet[0]);
 	int i;
 
@@ -80,11 +82,12 @@ void printCarpet(char **carpet) {
 		printf("%s\n", carpet[i]);
 }
 
-/** 
+/**
  * menger - function to generate and print a sierpinsky carpet of given level
  * @level: level of carpet desired
  */
-void menger(int level) {
+void menger(int level)
+{
 	char **carpet = createCarpet(1);
 	int i;
 
