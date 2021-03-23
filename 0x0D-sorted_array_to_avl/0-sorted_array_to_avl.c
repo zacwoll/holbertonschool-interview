@@ -3,22 +3,13 @@
 #include <stdlib.h>
 
 
-void preOrder(avl_t *node)
-{
-	if (node == NULL)
-		return;
-	printf("%d ", node->n);
-	preOrder(node->left);
-	preOrder(node->right);
-}
-
 avl_t *array_to_avl_util(int *array, avl_t *parent, size_t start, size_t end)
 {
 	avl_t *node;
 	size_t mid;
 	int data;
 
-	/* Base Case */
+	/* Catches the right end extreme */
 	if (start > end)
 	{
 		return (NULL);
@@ -40,7 +31,8 @@ avl_t *array_to_avl_util(int *array, avl_t *parent, size_t start, size_t end)
 		return node;
 	}
 
-	if (!(start + mid - 1 > start + mid))
+	/* Catches the left end extreme */
+	if (mid != 0)
 		node->left = array_to_avl_util(array, node, start, mid - 1);
 	node->right = array_to_avl_util(array, node, mid + 1, end);
 	return (node);
