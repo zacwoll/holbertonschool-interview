@@ -1,106 +1,62 @@
 #include "binary_trees.h"
 
 /**
- * setParents - recursivly set parents of a binary tree
- * @node: root node of a sub-tree
- * @parent: parent of node
+ * sorted_array_to_avl - builds an AVL tree from a sorted array
+ * @array: pointer to first element of array to be converted
+ * @size: number of elements in the array
  *
- * Return: void
- */
+ * Return: pointer to root node of AVL tree created, or NULL on failure
+ **/
 
-void setParents(avl_t *node, avl_t *parent)
-{
-	if (!node)
-		return;
-
-	node->parent = parent;
-
-	setParents(node->left, node);
-	setParents(node->right, node);
-}
-
-/**
- * build_avl - recursivly build avl with given array
- * @array: given int array
- * @size: size of array
- *
- * Return: Root node of built avl
- */
-
-avl_t *build_avl(int *array, size_t size)
-{
-	avl_t *root;
-	int i, middle;
-	int range = ((int)size % 2 == 0) ? (size / 2) - 1 : size / 2;
-	int *left = malloc(sizeof((size / 2)) * sizeof(int));
-	int *right = malloc(sizeof((size / 2)) * sizeof(int));
-
-	root = malloc(sizeof(avl_t));
-	if (array == NULL || size < 1 || root == NULL)
-		return (NULL);
-
-	middle = array[range];
-	if (middle == 0)
-		return (NULL);
-
-	for (i = 0; i < range; i++)
-	{
-		if ((int)size % 2)
-			left[i] = array[i];
-		else
-			left[i] = array[i - 1];
-	}
-
-	for (i = 0; i < (int)size / 2; i++)
-	{
-		if ((int)size % 2 == 0)
-			right[i] = array[i + (size / 2)];
-		else
-			right[i] = array[i + 1 + (size / 2)];
-	}
-
-	root->n = middle;
-	root->parent = NULL;
-	root->left = build_avl(left, (size / 2));
-	root->right = build_avl(right, (size / 2));
-
-	free(left);
-	free(right);
-	return (root);
-}
-
-/**
- * sorted_array_to_avl - convert array to avl
- * @array: sorted array
- * @size: size of the array
- *
- * Return: pointer to the root node of the avl tree
- */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
-	int isEven = !((int)size % 2);
-	avl_t *root, *temp = NULL;
-	avl_t *tail = malloc(sizeof(avl_t));
+	return (build_tree(array, 0, size - 1, NULL));
+}
 
-	if (isEven)
-	{
-		tail->n = array[--size];
-		tail->parent = NULL;
-		tail->left = NULL;
-		tail->right = NULL;
-	}
-	root = build_avl(array, size);
-	temp = root;
-	setParents(root->left, root);
-	setParents(root->right, root);
+/**
+ * build_tree - recursively builds an AVL tree from a sorted array
+ * @array: pointer to first element of array to be converted
+ * @start: index of array to start at
+ * @end: index of array to end at
+ * @prev_root: parent node of current position
+ *
+ * Return: pointer to root node of AVL tree created, or NULL on failure
+ **/
 
-	if (isEven)
-	{
-		while (temp->right != NULL)
-			temp = temp->right;
-		tail->parent = temp;
-		temp->right = tail;
-	}
+avl_t *build_tree(int *array, int start, int end, avl_t *prev_root)
+{
+	int mid;
+	avl_t *root;
 
+	if (start > end || start < 0)
+		return (NULL);
+	mid = (start + end) / 2;
+	root = make_node(array[mid]);
+	if (!root)
+		return (NULL);
+	root->parent = prev_root;
+	root->left = build_tree(array, start, mid - 1, root);
+	root->right = build_tree(array, mid + 1, end, root);
 	return (root);
+}
+
+/**
+ * make_node -makes a new node with n equal to data
+ * @data: number to store as n on new node
+ *
+ * Return: pointer to new node, or NULL on failure
+ **/
+
+avl_t *make_node(int data)
+{
+	avl_t *new_node = malloc(sizeof(avl_t) * 1);
+
+	if (!new_node)
+		return (NULL);
+
+	new_node->n = data;
+	new_node->parent = NULL;
+	new_node->left = NULL;
+	new_node->right = NULL;
+	return (new_node);
 }
