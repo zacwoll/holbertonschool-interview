@@ -1,43 +1,6 @@
 #include "binary_trees.h"
 
 /**
- * sorted_array_to_avl - convert array to avl
- * @array: sorted array
- * @size: size of the array
- *
- * Return: pointer to the root node of the avl tree
- */
-
-avl_t *sorted_array_to_avl(int *array, size_t size)
-{
-	int isEven = !((int)size % 2);
-	avl_t *root, *temp = NULL;
-	avl_t *tail = malloc(sizeof(avl_t));
-
-	if (isEven)
-	{
-		tail->n = array[--size];
-		tail->parent = NULL;
-		tail->left = NULL;
-		tail->right = NULL;
-	}
-	root = build_avl(array, size);
-	temp = root;
-	setParents(root->left, root);
-	setParents(root->right, root);
-
-	if (isEven)
-	{
-		while (temp->right != NULL)
-			temp = temp->right;
-		tail->parent = temp;
-		temp->right = tail;
-	}
-
-	return (root);
-}
-
-/**
  * setParents - recursivly set parents of a binary tree
  * @node: root node of a sub-tree
  * @parent: parent of node
@@ -103,5 +66,41 @@ avl_t *build_avl(int *array, size_t size)
 
 	free(left);
 	free(right);
+	return (root);
+}
+
+/**
+ * sorted_array_to_avl - convert array to avl
+ * @array: sorted array
+ * @size: size of the array
+ *
+ * Return: pointer to the root node of the avl tree
+ */
+avl_t *sorted_array_to_avl(int *array, size_t size)
+{
+	int isEven = !((int)size % 2);
+	avl_t *root, *temp = NULL;
+	avl_t *tail = malloc(sizeof(avl_t));
+
+	if (isEven)
+	{
+		tail->n = array[--size];
+		tail->parent = NULL;
+		tail->left = NULL;
+		tail->right = NULL;
+	}
+	root = build_avl(array, size);
+	temp = root;
+	setParents(root->left, root);
+	setParents(root->right, root);
+
+	if (isEven)
+	{
+		while (temp->right != NULL)
+			temp = temp->right;
+		tail->parent = temp;
+		temp->right = tail;
+	}
+
 	return (root);
 }
