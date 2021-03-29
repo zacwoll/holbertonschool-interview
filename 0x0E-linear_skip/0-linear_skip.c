@@ -1,5 +1,11 @@
 #include "search.h"
 
+/**
+ * get_end_index - gets last index of list
+ * @list: pointer to head of list
+ * Return: last index of list
+ * Description: Need to print last node, but skips past it
+ */
 size_t get_end_index(skiplist_t *list)
 {
     size_t end_index;
@@ -18,6 +24,12 @@ size_t get_end_index(skiplist_t *list)
     return (former->index);
 }
 
+/**
+ * linear_skip - searchs for value in skip list
+ * @list: head of list to search through
+ * @value: value to be searched for
+ * Return: Pointer to Node containing value or NULL
+ */
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
     skiplist_t *lower = list;

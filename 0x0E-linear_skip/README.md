@@ -1,3 +1,9 @@
+# 0x0E. Linear search in skip list
+## Task: Search for value in skip list
+Looking for a specific value in a singly linked list always leads to browse every element of the list. A common way to optimize the time complexity of a search in a singly linked list is to modify the list itself by adding an “express lane” to browse it. A linked list with an express lane is called a skip list.
+
+### search.h header file
+```
 #ifndef SEARCH_H
 #define SEARCH_H
 
@@ -27,3 +33,4 @@ void print_skiplist(const skiplist_t *list);
 void free_skiplist(skiplist_t *list);
 
 #endif /* SEARCH_H */
+```
