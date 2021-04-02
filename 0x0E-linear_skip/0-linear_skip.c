@@ -57,14 +57,14 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 			list = lower;
 		}
 		else if (list->n == value)
-		return (list);
+			return (list);
 		while (list && list->n < value)
 		{
 			lower = list;
 			list = list->next;
 			if (list)
 				printf("Value checked at index [%lu] = [%d]\n",
-				(unsigned long) list->index, list->n);
+			(unsigned long) list->index, list->n);
 		}
 		if (!list || list->n != value)
 			return (NULL);
