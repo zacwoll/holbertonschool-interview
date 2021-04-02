@@ -17,9 +17,9 @@ int main(void)
     print_skiplist(list);
 
     res =  linear_skip(list, 53);
-    printf("Found %d at index: %zu\n\n", 53, res->index);
+    printf("Found %d at index: %lu\n\n", 53, (unsigned long) res->index);
     res =  linear_skip(list, 2);
-    printf("Found %d at index: %zu\n\n", 2, res->index);
+    printf("Found %d at index: %lu\n\n", 2, (unsigned long) res->index);
     res =  linear_skip(list, 999);
     printf("Found %d at index: %p\n", 999, (void *) res);
 
