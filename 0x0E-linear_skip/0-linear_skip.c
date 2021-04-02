@@ -1,72 +1,53 @@
 #include "search.h"
 
 /**
- * get_end_index - gets last index of list
- * @list: pointer to head of list
- * Return: last index of list
- * Description: Need to print last node, but skips past it
+ * linear_skip - quickly searches linked list
+ * @list: head node
+ * @value: target value
+ *
+ * Return: Node with the given target value or NULL
  */
-size_t get_end_index(skiplist_t *list)
-{
-	skiplist_t *former;
 
-	while (list)
-	{
-		former = list;
-			list = list->express;
-	}
-	list = former;
-	while (list)
-	{
-		former = list;
-			list = list->next;
-	}
-	return (former->index);
-}
-
-/**
- * linear_skip - searchs for value in skip list
- * @list: head of list to search through
- * @value: value to be searched for
- * Return: Pointer to Node containing value or NULL
- */
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-	skiplist_t *lower = list;
-	size_t end_index = get_end_index(list);
+	skiplist_t *temp = list;
+	unsigned long length;
 
-	if (!list)
+	if (list == NULL)
 		return (NULL);
-	list = list->express;
-	while (list && list->n < value)
+	if (temp->express)
+		length = temp->express->index * temp->express->index;
+
+	while (temp->express)
 	{
-		printf("Value checked at index [%lu] = [%d]\n",
-			(unsigned long) list->index, list->n);
-		lower = list;
-		list = list->express;
+		printf(
+			"Value checked at index [%lu] = [%d]\n",
+			temp->express->index,
+			temp->express->n
+		);
+		if (temp->n == value)
+			return (temp);
+		if (temp->express->n > value)
+			break;
+		temp = temp->express;
 	}
-	if (!list || list->n > value)
+
+	printf(
+		"Value found between indexes [%lu] and [%lu]\n",
+		temp->index,
+		(temp->express) ? temp->express->index : --length
+	);
+
+	while (temp)
 	{
-		if (list)
-			end_index = list->index;
-		printf("Value found between indexes [%lu] and [%lu]\n",
-			(unsigned long) lower->index,
-			(unsigned long) end_index);
-			printf("Value checked at index [%lu] = [%d]\n",
-			(unsigned long) lower->index, lower->n);
-			list = lower;
-		}
-		else if (list->n == value)
-			return (list);
-		while (list && list->n < value)
-		{
-			lower = list;
-			list = list->next;
-			if (list)
-				printf("Value checked at index [%lu] = [%d]\n",
-			(unsigned long) list->index, list->n);
-		}
-		if (list && list->n == value)
-			return (list);
-		return (NULL);
+		printf(
+			"Value checked at index [%lu] = [%d]\n",
+			temp->index,
+			temp->n
+		);
+		if (temp->n == value)
+			return (temp);
+		temp = temp->next;
 	}
+	return (NULL);
+}
