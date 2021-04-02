@@ -16,7 +16,7 @@ int main(void)
 	};
 
 	head = create_skiplist(array, 23);
-	res = linear_skip(head, 62);
+	res = linear_skip(head, 100);
 	printf("Found at index: %lu\n", res->index);
 	free_skiplist(head);
 	return (0);
