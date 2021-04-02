@@ -10,10 +10,11 @@ size_t get_end_index(skiplist_t *list)
 {
 	size_t end_index;
 	skiplist_t *former;
+
 	while (list)
 	{
-		former = list;
-		list = list->express;
+			former = list;
+			list = list->express;
 	}
 	list = former;
 	while (list)
@@ -34,15 +35,15 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *lower = list;
 	size_t end_index = get_end_index(list);
-	// if given skiplist has error
+
 	if (!list)
 		return (NULL);
-	else
-		list = list->express;
+	list = list->express;
 
 	while (list && list->n < value)
 	{
-		printf("Value checked at index [%zu] = [%d]\n", list->index, list->n);
+		printf("Value checked at index [%zu] = [%d]\n",
+			list->index, list->n);
 		lower = list;
 		list = list->express;
 	}
@@ -52,7 +53,8 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 			end_index = list->index;
 		printf("Value found between indexes [%zu] and [%zu]\n",
 			lower->index, end_index);
-		printf("Value checked at index [%zu] = [%d]\n", lower->index, lower->n);
+		printf("Value checked at index [%zu] = [%d]\n",
+			lower->index, lower->n);
 		list = lower;
 	}
 	else if (list->n == value)
