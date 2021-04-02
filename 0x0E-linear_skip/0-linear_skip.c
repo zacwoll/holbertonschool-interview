@@ -13,14 +13,14 @@ size_t get_end_index(skiplist_t *list)
 
 	while (list)
 	{
-			former = list;
-			list = list->express;
+		former = list;
+		list = list->express;
 	}
 	list = former;
 	while (list)
 	{
 		former = list;
-		list = list->next;
+			list = list->next;
 	}
 	return (former->index);
 }
@@ -66,7 +66,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		list = list->next;
 		if (list)
 			printf("Value checked at index [%zu] = [%d]\n",
-				list->index, list->n);
+			list->index, list->n);
 	}
 	if (!list || list->n != value)
 		return (NULL);
