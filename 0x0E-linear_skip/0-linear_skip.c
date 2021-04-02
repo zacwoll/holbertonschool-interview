@@ -52,21 +52,21 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		printf("Value found between indexes [%lu] and [%lu]\n",
 			(unsigned long) lower->index,
 			(unsigned long) end_index);
-		printf("Value checked at index [%lu] = [%d]\n",
-			(unsigned long) lower->index, lower->n);
-		list = lower;
-	}
-	else if (list->n == value)
-		return (list);
-	while (list && list->n < value)
-	{
-		lower = list;
-		list = list->next;
-		if (list)
 			printf("Value checked at index [%lu] = [%d]\n",
-			(unsigned long) list->index, list->n);
+			(unsigned long) lower->index, lower->n);
+			list = lower;
+		}
+		else if (list->n == value)
+		return (list);
+		while (list && list->n < value)
+		{
+			lower = list;
+			list = list->next;
+			if (list)
+				printf("Value checked at index [%lu] = [%d]\n",
+				(unsigned long) list->index, list->n);
+		}
+		if (!list || list->n != value)
+			return (NULL);
+		return (list);
 	}
-	if (!list || list->n != value)
-		return (NULL);
-	return (list);
-}
