@@ -8,7 +8,6 @@
  */
 size_t get_end_index(skiplist_t *list)
 {
-	size_t end_index;
 	skiplist_t *former;
 
 	while (list)
