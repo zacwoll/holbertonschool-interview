@@ -14,7 +14,7 @@ size_t get_end_index(skiplist_t *list)
 	while (list)
 	{
 		former = list;
-		list = list->express;
+			list = list->express;
 	}
 	list = former;
 	while (list)
