@@ -38,7 +38,7 @@ def count_words(subreddit, word_list, **kwargs):
     response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code != 200:
-        print('error', response.status_code, response.url)
+        # print('error', response.status_code, response.url)
         return None
 
     after = response.json()['data']['after']
@@ -57,7 +57,6 @@ def count_words(subreddit, word_list, **kwargs):
     count += len(children)
 
     if after is not None:
-        # print('Call')
         count_words(
             subreddit, word_list,
             count=count,
