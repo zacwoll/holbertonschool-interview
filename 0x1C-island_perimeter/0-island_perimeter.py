@@ -13,14 +13,26 @@ def island_perimeter(grid):
             if (j != 0 and row[j - 1] == 0):
                 # print('left')
                 total_perimeter += 1
+            if (j == 0):
+                # left edge case
+                total_perimeter += 1
             if (j != len(row) - 1 and row[j + 1] == 0):
                 # print('right')
+                total_perimeter += 1
+            if (j == len(row) - 1):
+                # right edge case
                 total_perimeter += 1
             if (i != 0 and grid[i - 1][j] == 0):
                 # print('up')
                 total_perimeter += 1
+            if (i == 0):
+                # top edge case
+                total_perimeter += 1
             if (i != len(grid) - 1 and grid[i + 1][j] == 0):
                 # print('down')
+                total_perimeter += 1
+            if (i == len(grid) - 1):
+                # bottom edge case
                 total_perimeter += 1
     return total_perimeter
 
@@ -34,10 +46,9 @@ def print_grid(grid):
 if __name__ == "__main__":
     grid = [
         [0, 0, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
         [0, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0]
+        [0, 1, 1, 1, 0, 0],
+        [0, 1, 1, 1, 0, 0]
     ]
     print_grid(grid)
     print(island_perimeter(grid))
