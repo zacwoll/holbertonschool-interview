@@ -4,36 +4,38 @@
 # coins is an array of denominations such as [1, 5, 10, 25, 50] for the values of standard coins
 # total is amount I need to make using the denominations
 # def makeChange(coins, total):
-#     """ buttsex """
+#     """  """
 #     pass
 
 
 def _get_change_making_matrix(set_of_coins, r: int):
+    # create a matrix m containing an array containing the length of the set of coins + 1
     m = [[0 for _ in range(r + 1)] for _ in range(len(set_of_coins) + 1)]
     for i in range(1, r + 1):
         m[0][i] = float('inf')  # By default there is no way of making change
     return m
 
-# set_of_coins = [1, 2, 25]
-# r = 37
-# m = [
-    [0, 'inf' x 37],
-    [0 x 37 + 1],
-    [0 x 37 + 1],
-    [0 x 37 + 1],
+# set_of_coins = [1, 2, 25] # available coins
+# r = 37    # target change
+# m = [     # final matrix before calculations
+#    ['inf' x 37],
+#    [0 x (37 + 1)],
+#    [0 x (37 + 1)],
+#    [0 x (37 + 1)],
 # ]
 
-# for coin in [1, 3]
-#   for r in [1, 37]
+# for coin in [1, 2, 25]
+#   for r in [range(1, 37)]
 #       if coins[0] == 1
-#            m[coin][1] == 1 # easy
-#        elif coins[coint - 1] > 1:
+#            m[coin][1] == 1 # easy optimization
+#        elif coins[coin - 1] > 1:
 #           m[coin][1] = m[coin - 1][1]
 
 
 
 def makeChange(coins, n: int):
-    """This function assumes that all coins are available infinitely.
+    """
+    This function assumes that all coins are available infinitely.
     n is the number to obtain with the fewest coins.
     coins is a list or tuple with the available denominations.
     """

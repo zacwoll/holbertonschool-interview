@@ -32,3 +32,5 @@ carrie@ubuntu:~/0x19-making_change$
 ```
 
 ## Discussion
+
+Making Change is an example of dynamic programming. Dynamic programming is a large concept.
