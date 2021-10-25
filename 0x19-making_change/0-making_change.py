@@ -1,63 +1,29 @@
 """ 0. Change comes from within """
 
 
-# coins is an array of denominations such as [1, 5, 10, 25, 50] for the values of standard coins
-# total is amount I need to make using the denominations
-# def makeChange(coins, total):
-#     """  """
-#     pass
-
-
-def _get_change_making_matrix(set_of_coins, r: int):
-    # create a matrix m containing an array containing the length of the set of coins + 1
-    m = [[0 for _ in range(r + 1)] for _ in range(len(set_of_coins) + 1)]
-    for i in range(1, r + 1):
-        m[0][i] = float('inf')  # By default there is no way of making change
-    return m
-
-# set_of_coins = [1, 2, 25] # available coins
-# r = 37    # target change
-# m = [     # final matrix before calculations
-#    ['inf' x 37],
-#    [0 x (37 + 1)],
-#    [0 x (37 + 1)],
-#    [0 x (37 + 1)],
-# ]
-
-# for coin in [1, 2, 25]
-#   for r in [range(1, 37)]
-#       if coins[0] == 1
-#            m[coin][1] == 1 # easy optimization
-#        elif coins[coin - 1] > 1:
-#           m[coin][1] = m[coin - 1][1]
-
-
-
-def makeChange(coins, n: int):
+# Given a pile of coins of different values,
+# determine the fewest number of coins needed to
+# meet a given amount total
+def makeChange(coins, total):
     """
-    This function assumes that all coins are available infinitely.
-    n is the number to obtain with the fewest coins.
-    coins is a list or tuple with the available denominations.
+    Returns the fewest number of coins needed to meet a given amount total
     """
-    m = _get_change_making_matrix(coins, n)
-    for c in range(1, len(coins) + 1):
-        for r in range(1, n + 1):
-            # Just use the coin coins[c - 1].
-            if coins[c - 1] == r:
-                m[c][r] = 1
-            # coins[c - 1] cannot be included.
-            # Use the previous solution for making r,
-            # excluding coins[c - 1].
-            elif coins[c - 1] > r:
-                m[c][r] = m[c - 1][r]
-            # coins[c - 1] can be used.
-            # Decide which one of the following solutions is the best:
-            # 1. Using the previous solution for making r (without using coins[c - 1]).
-            # 2. Using the previous solution for making r - coins[c - 1] (without
-            #      using coins[c - 1]) plus this 1 extra coin.
-            else:
-                m[c][r] = min(m[c - 1][r], 1 + m[c][r - coins[c - 1]])
-    return m[-1][-1]
+    # create the 'array of ways'
+    matrix = [total + 1] * (total + 1)
+    matrix[0] = 0
+
+    # for each step of the matrix, l -> r
+    for n in range(1, total + 1):
+        # look at each coin in matrix
+        for coin in coins:
+            # if n (index of matrix) minus coin is greater than 0
+            if n - coin >= 0:
+                # Then we must be able to remove a coin
+                # Thus making the count of coins necessary less
+                # we'll check the min to set the new lower value
+                matrix[n] = min(matrix[n], 1 + matrix[n - coin])
+
+    return matrix[total] if matrix[total] < total + 1 else -1
 
 
 if __name__ == "__main__":
